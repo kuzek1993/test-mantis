@@ -23,8 +23,6 @@ def app(request):
         fixture = Application(browser=browser, base_url=web_config["baseUrl"])
     return fixture
 
-
-
 @pytest.fixture(scope="session", autouse=True)
 def stop(request):
     def fin():

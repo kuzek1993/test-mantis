@@ -1,5 +1,7 @@
 from selenium import webdriver
 from fixture.session import SessionHelper
+from fixture.project import ProjectHelper
+from fixture.db import DbFixture
 
 
 class Application:
@@ -15,6 +17,8 @@ class Application:
             raise ValueError("Unrecognized browser %s" % browser)
         self.wd.get(base_url)
         self.session = SessionHelper(self)
+        self.project = ProjectHelper(self)
+        self.db = DbFixture(self)
         self.base_url = base_url
 
     def is_valid(self):

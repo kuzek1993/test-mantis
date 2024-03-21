@@ -3,6 +3,7 @@ from fixture.application import Application
 import json
 import os.path
 
+
 fixture = None
 target = None
 
@@ -21,6 +22,7 @@ def app(request):
     web_config = load_config(request.config.getoption("--target")) ["web"]
     if fixture is None or not fixture.is_valid():
         fixture = Application(browser=browser, base_url=web_config["baseUrl"])
+    fixture.session.login(username=web_config["username"], password=web_config["password"])
     return fixture
 
 @pytest.fixture(scope="session", autouse=True)

@@ -27,7 +27,7 @@ def app(request, config):
     browser = request.config.getoption("--browser")
     if fixture is None or not fixture.is_valid():
         fixture = Application(browser=browser, config=config)
-    #fixture.session.login(username=config["webadmin"] ["username"], password=config["webadmin"] ["password"])
+    fixture.session.login(username=config["webadmin"] ["username"], password=config["webadmin"] ["password"])
     return fixture
 
 @pytest.fixture(scope="session", autouse=True)

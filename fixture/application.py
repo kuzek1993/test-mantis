@@ -1,8 +1,11 @@
 from selenium import webdriver
-from fixture.session import SessionHelper
 from fixture.project import ProjectHelper
 from fixture.db import DbFixture
 from fixture.james import JamesHelper
+from fixture.mail import MailHelper
+from fixture.session import SessionHelper
+from fixture.signup import SignupHelper
+
 
 
 class Application:
@@ -21,7 +24,14 @@ class Application:
         self.db = DbFixture(self)
         self.base_url = config["web"] ["baseUrl"]
         self.config = config
-        self.james = JamesHelper(self)
+        self.jamesHelper = JamesHelper(self)
+        self.signup = SignupHelper(self)
+        self.mail = MailHelper(self)
+
+    def open_home_page(self):
+        wd = self.wd
+        wd.get(self.base_url)
+        print(self.base_url)
 
     def is_valid(self):
         try:
